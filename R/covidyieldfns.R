@@ -80,7 +80,7 @@ covidcalcyield<- function(data, y, strategies,  weight = "No Weights", cluster =
   #paste0("Strategy", row(res)[,1])#stratlabels
   colnames(res) <- c("Yield", "Yield.LCL", "Yield.UCL", "NNT", "NNT.LCL", "NNT.UCL")
   res2 <- as.data.frame(res)
-  res2$Strategy.Name <- row.names(res2)
+  res2$Strategy <- row.names(res2)
   res2 <- res2[, c(7, 1, 2, 3, 4, 5, 6)]
   return(res2)
 }
@@ -98,7 +98,7 @@ covidplotyield <- function(results){
   res <- results #as.data.frame(results)
   #res$label <- row.names(results)
   res$nntr <- round(res$NNT)
-  fp <- ggplot(data=res, aes(x=Strategy.Name, y=NNT, ymin=NNT.LCL, ymax=NNT.UCL)) +
+  fp <- ggplot(data=res, aes(x=Strategy, y=NNT, ymin=NNT.LCL, ymax=NNT.UCL)) +
     geom_pointrange() +
     xlab("Strategy") + ylab("Number needed to test to find 1 new case of COVID-19 (95% CI)") + #theme( legend.position=c(.9,.95), legend.title=element_blank())+
     #coord_cartesian(ylim=c(0, 150))+
