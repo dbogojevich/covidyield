@@ -80,8 +80,8 @@ covidcalcyield<- function(data, y, strategies,  weight = "No Weights", cluster =
   colnames(res) <- c("Yield", "Yield.LCL", "Yield.UCL", "NNT", "NNT.LCL", "NNT.UCL")
   res2 <- as.data.frame(res)
   res2$Strategy.Name <- row.names(res)
-  res2$Yield <- formatC(res2$Yield, digits = 0)
-  res2$NNT <- formatC(res2$NNT, digits = 0)
+  res2$Yield <- formatC(res2$Yield, digits = 0, format = "f")
+  res2$NNT <- formatC(res2$NNT, digits = 0, format = "f")
   res2 <- res2[, c(7, 1, 2, 3, 4, 5, 6)]
   return(res2)
 }
