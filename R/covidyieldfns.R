@@ -42,10 +42,11 @@ covidyieldstrategy <- function(data, y, strategyind, strata = NULL, weight = "No
   ucl <- pct + 1.96*se
   mean <- pct
   yield <- as.data.frame(cbind(mean, lcl, ucl))
-  nnt <- round(1/(yield/100))
-  yield <- as.data.frame(cbind(round(mean), lcl, ucl))
+  nnt <- 1/(yield/100)
   names(yield) <- c("yield", "lcl", "ucl")
   names(nnt) <- c("nnt", "nntucl", "nntlcl")
+  yield$yield <- round(yield$yield)
+  yield$nnt <- round(yield$nnt)
   results <- as.matrix(cbind(yield, nnt))
   results <- results[,c(1,2,3,4,6,5)]
   results
