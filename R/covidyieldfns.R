@@ -41,7 +41,7 @@ covidyieldstrategy <- function(data, y, strategyind, strata = NULL, weight = "No
   lcl <- pct - 1.96*se
   ucl <- pct + 1.96*se
   mean <- pct
-  yield <- as.data.frame(cbind(mean, lcl, ucl))
+  yield <- as.data.frame(cbind(round(mean), lcl, ucl))
   nnt <- 1/(yield/100)
   names(yield) <- c("yield", "lcl", "ucl")
   names(nnt) <- c("nnt", "nntucl", "nntlcl")
@@ -82,6 +82,8 @@ covidcalcyield<- function(data, y, strategies,  weight = "No Weights", cluster =
   res2$Strategy.Name <- row.names(res)
   # res2$Yield <- formatC(ceiling(res2$Yield), digits = 0, format = "f")
   # res2$NNT <- formatC(ceiling(res2$NNT), digits = 0, format = "f")
+  # res2$Yield <- formatC(res2$Yield, digits = 0, format = "f")
+  # res2$NNT <- formatC(res2$NNT, digits = 0, format = "f")
   res2 <- res2[, c(7, 1, 2, 3, 4, 5, 6)]
   return(res2)
 }
